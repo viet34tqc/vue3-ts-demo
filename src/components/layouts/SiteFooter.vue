@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 <template>
-  <footer class="text-center bg-slate-100 container py-4">
-    Copyright &copy; {{ new Date().getFullYear() }}
+  <footer class="text-center bg-slate-100 py-4">
+    <div class="container">Copyright &copy; {{ new Date().getFullYear() }}</div>
   </footer>
 </template>
 
