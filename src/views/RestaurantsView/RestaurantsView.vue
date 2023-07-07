@@ -5,7 +5,9 @@ import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import RestaurantCard from './components/RestaurantCard.vue'
 import RestaurantForm from './components/RestaurantForm.vue'
+import { defaultRestaurantValue } from './constants'
 import { useRestaurantStore } from './store'
+import type { Restaurant } from './types'
 
 const showForm = ref(false)
 
@@ -21,13 +23,22 @@ const hideForm = () => {
   showForm.value = false
 }
 
+const editForm = (restaurant: Restaurant) => {
+  showForm.value = true
+  defaultRestaurant.value = restaurant
+}
+
 const filterText = ref('')
+
+const defaultRestaurant = ref<Restaurant>(defaultRestaurantValue)
 
 const restaurantStore = useRestaurantStore()
 
+// Get reactive value (not actions) by storeToRefs
 const { list: restaurantList, getNumberOfRestaurants: totalRestaurant } =
   storeToRefs(restaurantStore)
-const { addRestaurant, deleteRestaurant } = restaurantStore
+// Action can be destructured normally
+const { addRestaurant, deleteRestaurant, updateRestaurant } = restaurantStore
 const filteredRestaurantList = computed(() =>
   restaurantList.value.filter((restaurant) => {
     if (restaurant.name) {
@@ -45,7 +56,9 @@ const filteredRestaurantList = computed(() =>
 
       <RestaurantForm
         v-if="showForm"
+        :defaultRestaurant="defaultRestaurant"
         @addRestaurant="addRestaurant"
+        @updateRestaurant="updateRestaurant"
         @hideForm="hideForm()"
       ></RestaurantForm>
 
@@ -59,6 +72,7 @@ const filteredRestaurantList = computed(() =>
             v-for="item in filteredRestaurantList"
             :key="`item-${item}`"
             :restaurant="item"
+            @editForm="editForm(item)"
             @delete-restaurant="deleteRestaurant(item)"
           />
         </div>

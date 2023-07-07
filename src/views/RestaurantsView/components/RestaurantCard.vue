@@ -35,7 +35,10 @@ const statusColor = computed(() => {
       <p class="mb-2">
         {{ restaurant.address }}
       </p>
-      <button class="btn is-danger" @click="$emit('delete-restaurant')">Delete</button>
+      <div class="flex gap-4">
+        <button class="btn is-danger" @click="$emit('delete-restaurant')">Delete</button>
+        <button class="btn" @click="$emit('editForm')">Edit</button>
+      </div>
     </div>
   </article>
 </template>

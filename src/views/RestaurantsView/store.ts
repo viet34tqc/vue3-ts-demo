@@ -30,9 +30,16 @@ export const useRestaurantStore = defineStore('restaurantStore', () => {
   const addRestaurant = (payload: Restaurant) => {
     list.value.push(payload)
   }
+  const updateRestaurant = (payload: Restaurant) => {
+    list.value.forEach((res) => {
+      if (res.id === payload.id) {
+        res = payload
+      }
+    })
+  }
   const deleteRestaurant = (payload: Restaurant) => {
     list.value = list.value.filter((restaurant) => restaurant.id !== payload.id)
   }
 
-  return { list, getNumberOfRestaurants, addRestaurant, deleteRestaurant }
+  return { list, getNumberOfRestaurants, addRestaurant, deleteRestaurant, updateRestaurant }
 })

@@ -7,10 +7,6 @@ const navList = [
   {
     name: 'Restaurants',
     path: '/restaurants'
-  },
-  {
-    name: 'Dishes',
-    path: '/dishes'
   }
 ]
 </script>
