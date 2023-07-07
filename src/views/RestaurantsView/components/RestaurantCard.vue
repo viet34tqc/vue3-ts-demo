@@ -29,13 +29,13 @@ const statusColor = computed(() => {
       <h3 class="text-lg mb-1">
         {{ restaurant.name }}
       </h3>
-      <p class="text-sm mb-2">
-        <span class="tag" :class="statusColor">{{ restaurant.status }}</span>
+      <p :class="`text-sm mb-2 tag ${statusColor}`">
+        {{ restaurant.status }}
       </p>
       <p class="mb-2">
         {{ restaurant.address }}
       </p>
-      <button class="btn is-small is-danger is-light">Delete</button>
+      <button class="btn is-danger" @click="$emit('delete-restaurant')">Delete</button>
     </div>
   </article>
 </template>
