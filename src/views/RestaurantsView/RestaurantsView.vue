@@ -66,6 +66,14 @@ const filteredRestaurantList = computed(() =>
         <div class="flex gap-4 items-center mb-6">
           <strong class="text-xl">{{ totalRestaurant }} restaurants</strong>
           <button class="btn btn--primary" @click="showForm = true">New</button>
+          <input
+            type="text"
+            v-model="filterText"
+            class="w-[200px]"
+            placeholder="Search Restaurant"
+            name=""
+            id=""
+          />
         </div>
         <div class="space-y-4">
           <RestaurantCard

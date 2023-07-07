@@ -24,7 +24,7 @@ const statusColor = computed(() => {
 
 <template>
   <article class="flex gap-3 p-4 shadow-md">
-    <img src="https://placehold.jp/150x150.png" alt="" />
+    <img src="https://placehold.jp/150x150.png" alt="" width="150" height="150" />
     <div>
       <h3 class="text-lg mb-1">
         {{ restaurant.name }}
